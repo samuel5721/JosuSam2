@@ -1,0 +1,33 @@
+.Wrapper {
+  width: 15rem;
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+
+  border: solid 1px black;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ImageWrapper {
+  display: flex;
+  flex-grow: 4;
+
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.Image {
+  width: 10rem;
+  height: 10rem;
+}
+
+.Title {
+  flex-grow: 1;
+
+  font-size: 25px;
+  text-align: center;
+}
