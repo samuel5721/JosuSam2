@@ -21,10 +21,6 @@ function DataBox({ name, size, color, onSizeChange }) {
     onSizeChange(Number(event.target.value));
   };
 
-  const handleFocus = (event) => {
-    event.target.select();
-  };
-
   return(
     <div className={Styles.Wrapper}>
       <div className={Styles.NameWrapper}>
@@ -36,7 +32,7 @@ function DataBox({ name, size, color, onSizeChange }) {
         type='number' 
         value={size} 
         onChange={handleSizeChange} 
-        onFocus={handleFocus}
+        onFocus={(event) => {event.target.select();}}
       />
     </div>
   );

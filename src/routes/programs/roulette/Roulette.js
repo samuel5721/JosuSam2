@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Wheel } from 'react-custom-roulette';
 import { useAtom } from 'jotai';
 
@@ -19,6 +19,7 @@ function  Roulette() {
 
   const [data, setData] = useAtom(objectsAtom);
 
+
   const updateOptionSize = (index, newSize) => {
     let validatedSize = newSize;
 
@@ -27,7 +28,7 @@ function  Roulette() {
     if (validatedSize === null || validatedSize <= 0) validatedSize = 1;
 
     // 새로운 데이터 배열 생성
-    const newData = data.map((item, idx) => {
+    const newData = data?.map((item, idx) => {
       if (idx === index) {
         return { ...item, optionSize: validatedSize };
       }
@@ -51,7 +52,7 @@ function  Roulette() {
       const pivot = Math.floor((Math.random() * 99) +1);
       let stack = 0;
 
-      let percentage = data.map((row, idx) => row.percentage);
+      let percentage = data?.map((row, idx) => row.percentage);
 
       let newPrizeNumber = null;
       percentage.some((row,idx) => {
@@ -79,16 +80,16 @@ function  Roulette() {
   return (
     <div className={Styles.Wrapper}>
       <Header />
-      <section>
+      <section className={Styles.Section}>
         <div className={Styles.FloatingWrapper}>
-          <FloatingActionButton iconName='ChevronLeft' onClick={() => {navigate(`/program/1/settings`); window.location.reload();}}/>
+          <FloatingActionButton iconName='ChevronLeft' onClick={() => {navigate(`/program/1/`);}}/>
         </div>
         <div className={Styles.RouletteWrapper}>
           <Wheel
             mustStartSpinning={mustSpin}
             prizeNumber={prizeNumber}
             data={data}
-            startingOptionIndex={Math.floor(Math.random() * data.length)} 
+            startingOptionIndex={Math.floor(Math.random() * data?.length)} 
             onStopSpinning={StopSpinning}
             innerBorderWidth={0}
             outerBorderWidth={0}
@@ -100,7 +101,7 @@ function  Roulette() {
           {
           (!mustSpin) &&
           <>
-            <div className={Styles.SelectedPrizeText}>{data[prizeNumber].option}</div>
+            <div className={Styles.SelectedPrizeText}>{data[prizeNumber]?.option}</div>
             <div className={Styles.BtnWrapper}>
               <button className={Styles.RollBtn} onClick={handleSpinClick}>추첨</button>
               <button className={Styles.RollBtn} onClick={() => {setIsShowDataBox(!isShowDataBox)}}>확률</button>
@@ -112,18 +113,18 @@ function  Roulette() {
           (isShowDataBox) && 
           <div className={Styles.DataWrapper}>
           {
-            data.map((e, index) => 
+            data?.map((e, index) => 
               <DataBox 
-                name={e.option} 
-                size={e.optionSize}
-                color={e.style.backgroundColor}
+                name={e?.option} 
+                size={e?.optionSize}
+                color={e?.style.backgroundColor}
                 onSizeChange={(newSize) => updateOptionSize(index, newSize)} 
               />)
           }
         </div>
         }
       </section>
-    </div>
+  </div>
   );
 }
 
