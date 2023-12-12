@@ -1,0 +1,8 @@
+.Button {
+  float: right;
+  width: 4rem;
+  height: 4rem;
+  background-color: white;
+  border: none;
+  border-radius: 10rem;
+}

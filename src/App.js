@@ -7,14 +7,17 @@ import {
   Routes
 } from "react-router-dom";
 
-import Home from './routes/Home';
-
+import Home from './routes/Home.js';
+import Roulette from './routes/programs/roulette/Roulette.js';
+import RouletteSettings from './routes/programs/roulette/RouletteSettings.js';
 
 function App() {
   return (
     <Router>
     <Routes>
       <Route path='/'  element={<Home />}></Route>
+      <Route path='/program/1'  element={<Roulette />}></Route>
+      <Route path='/program/1/settings'  element={<RouletteSettings />}></Route>
     </Routes>
   </Router>
   );
